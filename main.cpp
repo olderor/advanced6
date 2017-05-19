@@ -6,13 +6,14 @@
 
 struct decimal_number_compressor {
  public:
-    decimal_number_compressor(std::string &number) {
+    explicit decimal_number_compressor(std::string &number) {
         data = number;
         data_length = data.length();
     }
 
     std::string compress() {
-        const int fractional_part_start_index = find_fractional_part_start_index();
+        const int fractional_part_start_index =
+            find_fractional_part_start_index();
         if (fractional_part_start_index == -1) {
             return data;
         }
@@ -37,13 +38,16 @@ struct decimal_number_compressor {
         for (int current = 1; current < data_length - start_index; ++current) {
             matched_prefix = current - 1;
             candidate = prefix_function_data[matched_prefix];
-            while (candidate != 0 && data[data_length - current - 1] != data[data_length - candidate - 1]) {
+            while (candidate != 0 &&
+                data[data_length - current - 1] !=
+                data[data_length - candidate - 1]) {
                 matched_prefix = prefix_function_data[matched_prefix] - 1;
                 candidate = prefix_function_data[matched_prefix];
             }
 
             if (candidate == 0) {
-                prefix_function_data[current] = data[data_length - current - 1] == data[data_length - 1];
+                prefix_function_data[current] =
+                    data[data_length - current - 1] == data[data_length - 1];
             } else {
                 prefix_function_data[current] = candidate + 1;
             }
@@ -62,7 +66,8 @@ struct decimal_number_compressor {
     const int find_index_with_maximum_prefix_function_value() const {
         int max_prefix_function_index = 0;
         for (int i = 1; i < prefix_function_data.size(); ++i) {
-            if (prefix_function_data[i] > prefix_function_data[max_prefix_function_index]) {
+            if (prefix_function_data[i] >
+                prefix_function_data[max_prefix_function_index]) {
                 max_prefix_function_index = i;
             }
         }
@@ -76,8 +81,8 @@ struct decimal_number_compressor {
         }
         compressed_data += '(';
         for (int j = data_length - best_prefix_func_index - 1;
-            j < data_length - prefix_function_data[best_prefix_func_index]; ++j) {
-
+            j < data_length - prefix_function_data[best_prefix_func_index];
+            ++j) {
             compressed_data += data[j];
         }
         compressed_data += ')';
