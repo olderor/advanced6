@@ -43,7 +43,7 @@ struct decimal_number_compressor {
 
     // Compress the given data to the new data with periodical part.
     // prefix_function_index - index in the prefix function storage,
-    // the data will be converted to the periodic depending of this value,
+    // the data will be converted to the periodic depending on this value,
     // which represents the start position of the period and its length.
     // Return the periodic decimal number.
     std::string compress(const int prefix_function_index) const;
