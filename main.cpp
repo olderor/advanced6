@@ -86,6 +86,7 @@ struct decimal_number_compressor {
             compressed_data += data[j];
         }
         compressed_data += ')';
+        return compressed_data;
     }
 };
 
