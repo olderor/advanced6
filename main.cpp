@@ -56,6 +56,7 @@ std::string decimal_number_compressor::compress() {
 
 std::vector<int> decimal_number_compressor
 ::get_prefix_function_data() {
+
     int start_index = 0;
     for (int i = 0; i < data.length(); ++i) {
         if (data[i] == ',' || data[i] == '.') {
