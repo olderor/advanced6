@@ -33,7 +33,7 @@ void read_data(std::istream &_Istr,
                std::string &data);
 
 // Put data to output stream.
-void print_data(std::ostream  &_Ostr,
+void print_data(std::ostream &_Ostr,
                 std::string &data);
 
 // Get answer to the given problem using given data.
@@ -117,6 +117,7 @@ std::string decimal_number_compressor
         compressed_data << data[j];
     }
     compressed_data << ')';
+    
     return compressed_data.str();
 }
 
@@ -126,7 +127,7 @@ void read_data(std::istream &_Istr,
     _Istr >> data;
 }
 
-void print_data(std::ostream  &_Ostr,
+void print_data(std::ostream &_Ostr,
                 std::string &data) {
     
     _Ostr << data;
