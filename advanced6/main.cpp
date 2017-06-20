@@ -9,14 +9,14 @@
 struct decimal_number_compressor {
  public:
     // Computes prefix data for the string.
-    static std::vector<int> get_prefix_function_data(std::string &str);
+    static std::vector<int> prefix_function(std::string &str);
 
     // Initialize with the given decimal number.
     explicit decimal_number_compressor(std::string &number);
 
     // Compress the given data to the new data with periodical part.
     // Return the periodic decimal number.
-    std::string compress();
+    std::string compress_decimal_number();
 
  private:
     // Initial data.
@@ -42,8 +42,8 @@ decimal_number_compressor::decimal_number_compressor(std::string &number) {
     data = number;
 }
 
-std::string decimal_number_compressor::compress() {
-    prefix_function_data = get_prefix_function_data(data);
+std::string decimal_number_compressor::compress_decimal_number() {
+    prefix_function_data = prefix_function(data);
 
     // Finding index of largest value in the prefix function data.
     int prefix_function_index = 0;
@@ -71,8 +71,7 @@ std::string decimal_number_compressor::compress() {
     return compressed_data;
 }
 
-std::vector<int> decimal_number_compressor::get_prefix_function_data(
-  std::string &data) {
+std::vector<int> decimal_number_compressor::prefix_function(std::string &data) {
 
     // Finding fractional part delimiter.
     int start_index = static_cast<int>(data.find('.'));
@@ -113,7 +112,7 @@ void print_data(std::ostream &_Ostr, std::string &data) {
 
 std::string solve(std::string &data) {
     decimal_number_compressor compressor = decimal_number_compressor(data);
-    return compressor.compress();
+    return compressor.compress_decimal_number();
 }
 
 int main() {
